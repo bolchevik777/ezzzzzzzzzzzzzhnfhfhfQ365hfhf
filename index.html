@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony1337</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 4px solid #ff0000;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .username {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #000000;
+            font-family: 'Blackletter', 'Old English Text MT', 'Fraktur', serif;
+            text-shadow: 
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 30px #ff0000,
+                0 0 40px #ff0000,
+                0 0 70px #ff0000,
+                0 0 80px #ff0000,
+                0 0 100px #ff0000;
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px #ff0000,
+                    0 0 20px #ff0000,
+                    0 0 30px #ff0000,
+                    0 0 40px #ff0000;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #ff0000,
+                    0 0 30px #ff0000,
+                    0 0 40px #ff0000,
+                    0 0 50px #ff0000,
+                    0 0 60px #ff0000,
+                    0 0 70px #ff0000;
+            }
+        }
+
+        .sound-btn, .click-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .sound-btn {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+        }
+
+        .sound-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .email-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .mail-icon {
+            font-size: 1.5rem;
+        }
+
+        .email-text {
+            color: #ff0000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+
+    </style>
+</head>
+<body>
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="video.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="content">
+        <img src="tonypfp.png" alt="Tony Profile" class="profile-image">
+        <div class="username">Tony1337</div>
+        
+        <button class="sound-btn" id="soundBtn">🔊 Activer le Son</button>
+        <br>
+        <div class="email-container">
+            <span class="mail-icon">✉️</span>
+            <span class="email-text">tony@tony.see-know.org</span>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Attendre que tout soit chargé
+        window.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('bg-video');
+            const soundBtn = document.getElementById('soundBtn');
+
+            console.log('Éléments chargés:', video, soundBtn);
+
+            // Bouton pour activer/désactiver le son de la vidéo
+            soundBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Bouton son cliqué');
+                
+                if (video.muted) {
+                    video.muted = false;
+                    video.volume = 0.7;
+                    soundBtn.textContent = '🔇 Couper le Son';
+                    console.log('Son activé');
+                } else {
+                    video.muted = true;
+                    soundBtn.textContent = '🔊 Activer le Son';
+                    console.log('Son coupé');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
